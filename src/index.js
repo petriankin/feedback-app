@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 
 const Button = (props) => {
@@ -9,6 +9,15 @@ const Statistics = ({good, bad, neutral, all}) => {
     const calculateAverage = () => (good - bad) / (good + bad + neutral)
 
     const calculatePositive = () => (good / all) * 100
+
+    if (all === 0) {
+        return (
+            <>
+                <h2>statistics</h2>
+                <p>No feedback given</p>
+            </>
+        )
+    }
 
     return (
         <>
