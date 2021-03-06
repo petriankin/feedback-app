@@ -13,9 +13,9 @@ const Statistic = ({text, value}) => {
 }
 
 const Statistics = ({good, bad, neutral, all}) => {
-    const calculateAverage = () => (good - bad) / (good + bad + neutral)
+    const calculateAverage = () => ((good - bad) / (good + bad + neutral)).toFixed(1)
 
-    const calculatePositive = () => (good / all) * 100
+    const calculatePositive = () => ((good / all) * 100).toFixed(1)
 
     if (all === 0) {
         return (
