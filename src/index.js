@@ -5,6 +5,13 @@ const Button = (props) => {
     return (<button onClick={props.handleClick}>{props.text}</button>)
 }
 
+const Statistic = ({text, value}) => {
+    return (
+        <p>{text} {value}</p>
+    )
+
+}
+
 const Statistics = ({good, bad, neutral, all}) => {
     const calculateAverage = () => (good - bad) / (good + bad + neutral)
 
@@ -13,7 +20,6 @@ const Statistics = ({good, bad, neutral, all}) => {
     if (all === 0) {
         return (
             <>
-                <h2>statistics</h2>
                 <p>No feedback given</p>
             </>
         )
@@ -21,13 +27,12 @@ const Statistics = ({good, bad, neutral, all}) => {
 
     return (
         <>
-            <h2>statistics</h2>
-            <p>good {good}</p>
-            <p>neutral {neutral}</p>
-            <p>bad {bad}</p>
-            <p>all {all}</p>
-            <p>average {calculateAverage()}</p>
-            <p>positive {calculatePositive()}</p>
+            <Statistic text="good" value={good}/>
+            <Statistic text="neutral" value={neutral}/>
+            <Statistic text="bad" value={bad}/>
+            <Statistic text="all" value={all}/>
+            <Statistic text="average" value={calculateAverage()}/>
+            <Statistic text="positive" value={calculatePositive()}/>
         </>
     )
 }
@@ -60,11 +65,12 @@ const App = () => {
             <Button handleClick={handleGoodClick} text="good"/>
             <Button handleClick={handleNeutralClick} text="neutral"/>
             <Button handleClick={handleBadClick} text="bad"/>
+            <h2>statistics</h2>
             <Statistics good={good} bad={bad} neutral={neutral} all={all}/>
         </div>
     )
 }
 
-ReactDOM.render(<App />,
+ReactDOM.render(<App/>,
     document.getElementById('root')
 )
